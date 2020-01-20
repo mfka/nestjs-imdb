@@ -13,6 +13,8 @@ When you run it for the first time, it will download and build all needed images
 make
 ```
 
+then visit [localhost](http://localhost)
+
 ### Creating a self signed SSL certificate. Use following command and follow the instruction:
 
 Boilerplate ships with built-in certificate, however you can create your own!
@@ -21,15 +23,11 @@ Boilerplate ships with built-in certificate, however you can create your own!
 make cert
 ```
 
-### Edit your local hosts file
-
-1. Open hosts file in your editor. (eg. `sudo vim /etc/hosts`)
-2. add your DOMAIN variable eg.
-   ```
-   127.0.0.1     app.local www.app.local
-   ```
-3. Save changes
-
+### [Optional] Add domain to hosts
+Edit your local hosts file
+```bash
+sudo -- sh -c "echo '127.0.0.1  app.local www.app.local' >> /etc/hosts"
+```
 ### Visit your application in browser [https://app.local](https://app.local) or [http://app.local](http://app.local)
 
 # Debugging
@@ -39,7 +37,7 @@ Run the app in debug mode:
 #### Using docker-compose
 
 ```
-docker-compose -f ./docker-compose.yaml -f ./with-debug.yaml up --build -d
+docker-compose -f ./docker-compose.yaml -f ./docker-compose.dev.yaml up --build -d
 ```
 
 #### Using makefile

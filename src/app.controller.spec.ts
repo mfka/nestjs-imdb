@@ -11,9 +11,9 @@ describe('AppController', () => {
     appController = app.get<AppController>(AppController);
   });
 
-  describe('Root ', () => {
-    it('health check works ', async () => {
-      expect(await appController.healthCheck()).toEqual({ OK: true });
+  describe('Testing app controller', () => {
+    it('Return health check response', async () => {
+      expect(await appController.healthCheck()).toEqual({ health: true });
     });
   });
 });

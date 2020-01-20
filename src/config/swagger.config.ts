@@ -1,14 +1,20 @@
-import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
+import { SwaggerModule, DocumentBuilder } from "@nestjs/swagger";
 
-export default function(app){
-    const options = new DocumentBuilder()
+export enum SwaggerTags {
+  AUTH = "auth",
+  MOVIES = "movies"
+}
+
+export default app => {
+  const options = new DocumentBuilder()
     .setTitle(process.env.APP_NAME)
     .setDescription(process.env.APP_DESC)
-    .setVersion('1.0')
-    .setHost(process.env.DOMAIN)
-    .build();
-   
-    const document = SwaggerModule.createDocument(app, options);
-   
-    SwaggerModule.setup('api', app, document);
-}
+    .setVersion("1.0")
+    .addBearerAuth();
+
+  Object.values(SwaggerTags).map((tag: string) => options.addTag(tag));
+
+  const document = SwaggerModule.createDocument(app, options.build());
+
+  SwaggerModule.setup("api", app, document);
+};
