@@ -13,7 +13,7 @@ When you run it for the first time, it will download and build all needed images
 make
 ```
 
-then visit [localhost](http://localhost)
+then visit [localhost/api](http://localhost/api)
 
 ### Creating a self signed SSL certificate. Use following command and follow the instruction:
 
@@ -32,6 +32,22 @@ sudo -- sh -c "echo '127.0.0.1  app.local www.app.local' >> /etc/hosts"
 ```
 
 ### Visit your application in browser [https://app.local](https://app.local) or [http://app.local](http://app.local)
+
+# Testing
+
+## Unit test
+
+```bash
+yarn test
+```
+
+## E2E test
+
+because e2e are require database connection they have to be run in container
+
+```bash
+make e2e
+```
 
 # Debugging
 
@@ -89,32 +105,4 @@ make debug
         }
     ]
 }
-```
-
-# nestJS
-
-## Running the app
-
-```bash
-# development
-yarn start
-
-# watch mode
-yarn start:dev
-
-# production mode
-yarn start:prod
-```
-
-## Test
-
-```bash
-# unit tests
-yarn test
-
-# e2e tests
-yarn test:e2e
-
-# test coverage
-yarn test:cov
 ```
