@@ -52,11 +52,11 @@ describe('(GET) /movies', () => {
 
       const { body } = await request(app.getHttpServer())
         .get(`/movies`)
-        .query({ sortBy: 'year', orderSort: 'desc' })
+        .query({ sortBy: 'title', orderSort: 'desc' })
         .set('Authorization', `Bearer ${token}`)
         .expect(200);
 
-      expect(body.items[0].year).toStrictEqual(2003);
+      expect(body.items[0].title).toStrictEqual('Movie 3');
     });
   });
 
@@ -66,7 +66,7 @@ describe('(GET) /movies', () => {
 
       return request(app.getHttpServer())
         .get(`/movies`)
-        .query({ sortBy: 'title', orderSort: 'desc' })
+        .query({ sortBy: 'director', orderSort: 'desc' })
         .set('Authorization', `Bearer ${token}`)
         .expect(400);
     });
