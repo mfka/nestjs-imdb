@@ -6,7 +6,7 @@ import { ValidationPipe } from '@nestjs/common';
 import { AppModule } from '../../src/app.module';
 import { getTestAccessToken } from '../utils/get-token';
 import { resetDatabase } from '../utils/reset-database';
-import { Movie } from '../../dist/movies/movie.entity';
+import { Movie } from '../../src/movies/movie.entity';
 
 const createMultipleMovies = (n: number): void => {
   [...Array(n).keys()].map(async e => {
