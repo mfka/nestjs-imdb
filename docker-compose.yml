@@ -8,7 +8,9 @@ services:
     ports:
       - 5432:5432
     volumes:
+      - ./docker/postgresql/scripts:/docker-entrypoint-initdb.d
       - db_data:/var/lib/postgresql/data
+
 
   node:
     container_name: ${APP_NAME}-app

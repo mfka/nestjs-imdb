@@ -10,3 +10,5 @@ stop:
 	docker-compose -f ./docker-compose.yml stop
 restart:
 	make stop && make start
+e2e:
+	docker-compose exec -T node sh -ac "yarn test:e2e"
