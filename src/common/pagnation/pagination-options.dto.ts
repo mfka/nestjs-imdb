@@ -4,7 +4,7 @@ import { Transform } from 'class-transformer';
 
 export enum PaginationDefault {
   LIMIT = 10,
-  PAGE = 1
+  PAGE = 1,
 }
 
 export class PaginationOptionsDto {

@@ -8,12 +8,7 @@ import { UserModule } from './users/user.module';
 import { MovieModule } from './movies/movie.module';
 
 @Module({
-  imports: [
-    TypeOrmModule.forRoot(typeOrmConfig),
-    AuthModule,
-    UserModule,
-    MovieModule,
-  ],
-  controllers: [AppController]
+  imports: [TypeOrmModule.forRoot(typeOrmConfig), AuthModule, UserModule, MovieModule],
+  controllers: [AppController],
 })
 export class AppModule {}

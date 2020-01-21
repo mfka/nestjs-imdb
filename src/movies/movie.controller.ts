@@ -11,7 +11,7 @@ import {
   UsePipes,
   ValidationPipe,
 } from '@nestjs/common';
-import { ApiBearerAuth, ApiTags, ApiQuery } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 import { AuthGuard } from '@nestjs/passport';
 import { Pagination } from 'nestjs-typeorm-paginate';
 import { SwaggerTags } from '../config/swagger.config';

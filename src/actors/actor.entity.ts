@@ -26,6 +26,9 @@ export class Actor extends BaseEntity {
   @ApiProperty()
   public imdbUrl: string;
 
-  @ManyToOne(type => Movie, movie => movie.actors)
+  @ManyToOne(
+    type => Movie,
+    movie => movie.actors,
+  )
   public movie: Movie;
 }

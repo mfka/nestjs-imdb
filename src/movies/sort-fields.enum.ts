@@ -1,5 +1,5 @@
 export enum SortField {
-  ID = "id",
-  YEAR = "year",
-  METASCORE = "metascore"
+  ID = 'id',
+  YEAR = 'year',
+  METASCORE = 'metascore',
 }

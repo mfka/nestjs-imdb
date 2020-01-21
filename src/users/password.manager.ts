@@ -7,10 +7,7 @@ export class PasswordManager {
     return argon2.hash(password);
   }
 
-  public verify(
-    hashedPassword: string,
-    plainPassword: string
-  ): Promise<boolean> {
+  public verify(hashedPassword: string, plainPassword: string): Promise<boolean> {
     return argon2.verify(hashedPassword, plainPassword);
   }
 }

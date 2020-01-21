@@ -24,10 +24,13 @@ make cert
 ```
 
 ### [Optional] Add domain to hosts
+
 Edit your local hosts file
+
 ```bash
 sudo -- sh -c "echo '127.0.0.1  app.local www.app.local' >> /etc/hosts"
 ```
+
 ### Visit your application in browser [https://app.local](https://app.local) or [http://app.local](http://app.local)
 
 # Debugging
@@ -52,12 +55,13 @@ make debug
 
 1. In your IDE go to `Run` -> `Edit Configurations...`
 2. `+` (Add New Configuration) -> `Attach to Node.js/Chrome`
-    * Name: name it as you want, like `debug`
-    * Host: localhost
-    * Port: 9229
-    * Attach to: Chrome or Node.js > 6.3
-    * Reconnect automatically
-    * `OK`
+
+   - Name: name it as you want, like `debug`
+   - Host: localhost
+   - Port: 9229
+   - Attach to: Chrome or Node.js > 6.3
+   - Reconnect automatically
+   - `OK`
 
 3. Start debugging!
 

@@ -10,10 +10,13 @@ describe('MovieProvider', () => {
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      providers: [MovieProvider, {
-        provide: 'MovieRepository',
-        useValue: mockMovieRepository
-      }]
+      providers: [
+        MovieProvider,
+        {
+          provide: 'MovieRepository',
+          useValue: mockMovieRepository,
+        },
+      ],
     }).compile();
 
     provider = module.get<MovieProvider>(MovieProvider);

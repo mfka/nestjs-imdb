@@ -1,8 +1,8 @@
-import { EntityRepository, Repository, SelectQueryBuilder } from "typeorm";
+import { EntityRepository, Repository, SelectQueryBuilder } from 'typeorm';
 
-import { Movie } from "./movie.entity";
-import { SortField } from "./sort-fields.enum";
-import { SortOrder } from "../common/sorting/oder.enum";
+import { Movie } from './movie.entity';
+import { SortField } from './sort-fields.enum';
+import { SortOrder } from '../common/sorting/oder.enum';
 
 @EntityRepository(Movie)
 export class MovieRepository extends Repository<Movie> {
@@ -10,10 +10,7 @@ export class MovieRepository extends Repository<Movie> {
     return this.find();
   }
 
-  public getAllSortedQuery(
-    sort: SortField,
-    order: SortOrder
-  ): SelectQueryBuilder<Movie> {
+  public getAllSortedQuery(sort: SortField, order: SortOrder): SelectQueryBuilder<Movie> {
     return this.sortBy(sort, order);
   }
 
