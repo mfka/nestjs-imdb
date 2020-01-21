@@ -5,7 +5,7 @@ import { Actor } from '../actors/actor.entity';
 
 export enum SerializationGroup {
   LIST = 'list',
-  DETAILS = 'details'
+  DETAILS = 'details',
 }
 
 @Exclude()
@@ -33,6 +33,7 @@ export class Movie extends BaseEntity {
   public year: Date;
 
   @Column('decimal', { precision: 5, scale: 2 })
+  @Transform((metascore: string) => +metascore)
   @ApiProperty()
   @Expose({ groups: [SerializationGroup.LIST, SerializationGroup.DETAILS] })
   public metascore: number;
@@ -44,6 +45,9 @@ export class Movie extends BaseEntity {
 
   @ApiProperty()
   @Expose({ groups: [SerializationGroup.DETAILS] })
-  @OneToMany(type => Actor, actor => actor.movie)
+  @OneToMany(
+    type => Actor,
+    actor => actor.movie,
+  )
   actors: Actor[];
 }
