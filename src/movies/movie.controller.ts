@@ -11,7 +11,7 @@ import {
   UsePipes,
   ValidationPipe,
 } from '@nestjs/common';
-import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiTags, ApiOkResponse, ApiNotFoundResponse } from '@nestjs/swagger';
 import { AuthGuard } from '@nestjs/passport';
 import { Pagination } from 'nestjs-typeorm-paginate';
 import { SwaggerTags } from '../config/swagger.config';
@@ -46,6 +46,13 @@ export class MovieController {
   @Get(':id')
   @SerializeOptions({
     groups: [SerializationGroup.DETAILS],
+  })
+  @ApiOkResponse({
+    description: 'Return movie',
+    type: () => Movie,
+  })
+  @ApiNotFoundResponse({
+    description: "Movie doesn't exists",
   })
   public getMovie(@Param('id') id: number): Promise<Movie> {
     return this.movieProvider.getById(id);
