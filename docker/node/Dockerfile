@@ -9,4 +9,4 @@ COPY package.json yarn.lock ./
 RUN yarn
 COPY . .
 
-CMD /wait && sh -c 'yarn start'
+CMD /wait && sh -c 'yarn start:dev'
