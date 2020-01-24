@@ -7,6 +7,8 @@ import { UserRepository } from '../../users/user.repository';
 
 @Injectable()
 export class JwtStrategy extends PassportStrategy(Strategy) {
+  public static readonly STRATEGY_NAME = 'jwt';
+
   constructor(private readonly userRepository: UserRepository) {
     super({
       jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
@@ -23,5 +25,8 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
     }
 
     return user;
+  }
+  get strategyName(): string {
+    return 'jwt';
   }
 }

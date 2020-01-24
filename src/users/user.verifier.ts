@@ -1,5 +1,5 @@
-import { Injectable } from '@nestjs/common';
-import { AuthCredentialsDto } from '../auth/dto/credentials.dto';
+import { Injectable, BadRequestException, UnauthorizedException } from '@nestjs/common';
+import { LoginDto } from '../auth/dto/login.dto';
 import { User } from './user.entity';
 import { UserRepository } from './user.repository';
 import { PasswordManager } from './password.manager';
@@ -12,11 +12,15 @@ export class UserVerifier {
     return this.passwordManager.verify(user.password, password);
   }
 
-  async verifyByCredentials({ username: email, password }: AuthCredentialsDto): Promise<User> {
-    const user = await this.userRepository.findByEmail(email);
-    if (user && (await this.isPasswordValid(user, password))) {
-      return user;
+  async verifyByCredentials({ email, password }: LoginDto): Promise<User> {
+    try {
+      const user = await this.userRepository.findByEmail(email);
+      if (user && (await this.isPasswordValid(user, password))) {
+        return user;
+      }
+      return null;
+    } catch (error) {
+      throw new UnauthorizedException('Invalid password or email');
     }
-    return null;
   }
 }

@@ -6,13 +6,18 @@ import { User } from '../../users/user.entity';
 
 @Injectable()
 export class LocalStrategy extends PassportStrategy(Strategy) {
+  public static readonly STRATEGY_NAME = 'local';
+
   constructor(private readonly userVerifier: UserVerifier) {
-    super();
+    super({
+      usernameField: 'email',
+      passwordField: 'password',
+    });
   }
 
-  async validate(username: string, password: string): Promise<User> {
+  async validate(email: string, password: string): Promise<User> {
     const user = await this.userVerifier.verifyByCredentials({
-      username,
+      email,
       password,
     });
 

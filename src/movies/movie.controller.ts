@@ -23,7 +23,7 @@ import { PaginationRoute } from '../common/pagnation/route.decorator';
 
 @ApiBearerAuth()
 @Controller('movies')
-@UseGuards(AuthGuard('jwt'))
+@UseGuards(AuthGuard())
 @ApiTags(SwaggerTags.MOVIES)
 @UseInterceptors(ClassSerializerInterceptor)
 export class MovieController {
