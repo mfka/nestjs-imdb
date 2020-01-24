@@ -1,4 +1,4 @@
-FROM nginx:1.17-alpine
+FROM nginx:alpine
 
 RUN adduser -u 1000 -S www-data
 RUN rm /etc/nginx/conf.d/default.conf
