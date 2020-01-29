@@ -84,5 +84,9 @@
     },
     "coverageDirectory": "../coverage",
     "testEnvironment": "node"
+  },
+  "peerDependencies": {
+    "express": "4.17.1",
+    "typescript": "3.7.5"
   }
 }
