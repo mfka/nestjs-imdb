@@ -1,4 +1,14 @@
-import { Controller, Post, HttpCode, HttpStatus, UseGuards, Request, Body } from '@nestjs/common';
+import {
+  Controller,
+  Post,
+  HttpCode,
+  HttpStatus,
+  UseGuards,
+  Request,
+  Body,
+  UseInterceptors,
+  ClassSerializerInterceptor,
+} from '@nestjs/common';
 import {
   ApiTags,
   ApiBody,
@@ -6,14 +16,12 @@ import {
   ApiBadRequestResponse,
   ApiUnauthorizedResponse,
   ApiConsumes,
-  ApiResponse,
   ApiCreatedResponse,
 } from '@nestjs/swagger';
 import { AuthGuard } from '@nestjs/passport';
 
 import { SwaggerTags } from '../config/swagger.config';
 import { User } from '../users/user.entity';
-import { FailedDependencyException } from '../exceptions/failed-dependency.exception';
 
 import { AuthService } from './auth.service';
 import { LoginDto } from './dto/login.dto';
@@ -48,17 +56,15 @@ export class AuthController {
   }
 
   @Post('/register')
+  @UseInterceptors(ClassSerializerInterceptor)
   @ApiConsumes('application/x-www-form-urlencoded', 'application/json')
   @ApiCreatedResponse({ description: 'User was create' })
-  @ApiResponse({ status: HttpStatus.FAILED_DEPENDENCY, description: 'User was not created' })
   @ApiBadRequestResponse({
     description: 'Data validation failed or Bad request.',
   })
-  register(@Body() registerPayload: RegisterDto): Promise<User> {
-    try {
-      return this.authService.registerUser(registerPayload);
-    } catch (error) {
-      throw new FailedDependencyException('User was not created');
-    }
+  async register(@Body() registerPayload: RegisterDto): Promise<User> {
+    const user = await this.authService.registerUser(registerPayload);
+
+    return user;
   }
 }
