@@ -14,6 +14,7 @@ export class MovieProvider {
     paginationOptions: IPaginationOptions,
   ): Promise<Pagination<Movie>> {
     const query = this.movieRepository.getAllSortedQuery(sort, order);
+
     return paginate<Movie>(query, paginationOptions);
   }
 

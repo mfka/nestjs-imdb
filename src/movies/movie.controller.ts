@@ -14,12 +14,14 @@ import {
 import { ApiBearerAuth, ApiTags, ApiOkResponse, ApiNotFoundResponse } from '@nestjs/swagger';
 import { AuthGuard } from '@nestjs/passport';
 import { Pagination } from 'nestjs-typeorm-paginate';
+
 import { SwaggerTags } from '../config/swagger.config';
+import { PaginationOptionsDto } from '../common/pagnation/pagination-options.dto';
+import { PaginationRoute } from '../common/pagnation/route.decorator';
+
 import { MovieProvider } from './movie.provider';
 import { Movie, SerializationGroup } from './movie.entity';
 import { MoviesSortDto } from './dto/movies-sort.dto';
-import { PaginationOptionsDto } from '../common/pagnation/pagination-options.dto';
-import { PaginationRoute } from '../common/pagnation/route.decorator';
 
 @ApiBearerAuth()
 @Controller('movies')
@@ -40,6 +42,7 @@ export class MovieController {
     @Req() @PaginationRoute() route: string,
   ): Promise<Pagination<Movie>> {
     const paginationOptions = { route, ...paginationParams };
+
     return this.movieProvider.getSortedPaginated(sortParams, paginationOptions);
   }
 

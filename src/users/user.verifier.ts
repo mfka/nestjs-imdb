@@ -1,5 +1,7 @@
-import { Injectable, BadRequestException, UnauthorizedException } from '@nestjs/common';
+import { Injectable, UnauthorizedException } from '@nestjs/common';
+
 import { LoginDto } from '../auth/dto/login.dto';
+
 import { User } from './user.entity';
 import { UserRepository } from './user.repository';
 import { PasswordManager } from './password.manager';
@@ -18,6 +20,7 @@ export class UserVerifier {
       if (user && (await this.isPasswordValid(user, password))) {
         return user;
       }
+
       return null;
     } catch (error) {
       throw new UnauthorizedException('Invalid password or email');

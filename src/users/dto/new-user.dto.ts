@@ -1,6 +1,7 @@
 import { IsEmail, IsString, MaxLength, MinLength } from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
 import { Transform } from 'class-transformer';
+
 import { UserInterface } from '../user.interface';
 
 export class NewUserDto implements UserInterface {

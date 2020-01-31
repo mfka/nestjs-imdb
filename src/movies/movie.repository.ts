@@ -1,8 +1,9 @@
 import { EntityRepository, Repository, SelectQueryBuilder } from 'typeorm';
 
+import { SortOrder } from '../common/sorting/oder.enum';
+
 import { Movie } from './movie.entity';
 import { SortField } from './sort-fields.enum';
-import { SortOrder } from '../common/sorting/oder.enum';
 
 @EntityRepository(Movie)
 export class MovieRepository extends Repository<Movie> {

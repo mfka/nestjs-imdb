@@ -1,4 +1,5 @@
 import { Test, TestingModule } from '@nestjs/testing';
+
 import { MovieProvider } from './movie.provider';
 
 describe('MovieProvider', () => {

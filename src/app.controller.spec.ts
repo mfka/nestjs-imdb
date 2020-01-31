@@ -1,4 +1,5 @@
 import { Test, TestingModule } from '@nestjs/testing';
+
 import { AppController } from './app.controller';
 
 describe('AppController', () => {
@@ -12,8 +13,8 @@ describe('AppController', () => {
   });
 
   describe('Testing app controller', () => {
-    it('Return health check response', async () => {
-      expect(await appController.healthCheck()).toEqual({ health: true });
+    it('Return health check response', () => {
+      expect(appController.healthCheck()).toEqual({ health: true });
     });
   });
 });

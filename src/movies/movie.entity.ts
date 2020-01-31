@@ -1,6 +1,7 @@
 import { BaseEntity, Column, Entity, PrimaryGeneratedColumn, OneToMany } from 'typeorm';
 import { Exclude, Expose, Transform } from 'class-transformer';
 import { ApiProperty } from '@nestjs/swagger';
+
 import { Actor } from '../actors/actor.entity';
 
 export enum SerializationGroup {
@@ -46,7 +47,7 @@ export class Movie extends BaseEntity {
   @ApiProperty()
   @Expose({ groups: [SerializationGroup.DETAILS] })
   @OneToMany(
-    type => Actor,
+    () => Actor,
     actor => actor.movie,
   )
   actors: Actor[];

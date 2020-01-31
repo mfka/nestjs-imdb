@@ -1,7 +1,7 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import * as request from 'supertest';
-
 import { ValidationPipe } from '@nestjs/common';
+
 import { AppModule } from '../../src/app.module';
 import { getTestAccessToken } from '../utils/get-token';
 import { resetDatabase } from '../utils/reset-database';
@@ -61,6 +61,7 @@ describe('(GET) /movies/:id', () => {
   describe('When movie not exists', () => {
     it('Return not found', async () => {
       token = await getTestAccessToken(app);
+
       return request(app.getHttpServer())
         .get(`/movies/10000`)
         .set('Authorization', `Bearer ${token}`)

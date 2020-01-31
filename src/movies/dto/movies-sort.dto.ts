@@ -1,5 +1,6 @@
 import { IsOptional, IsNotEmpty, IsEnum } from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
+
 import { SortOrder } from '../../common/sorting/oder.enum';
 import { SortField } from '../sort-fields.enum';
 

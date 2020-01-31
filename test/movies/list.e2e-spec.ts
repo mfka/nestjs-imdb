@@ -1,8 +1,8 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import * as request from 'supertest';
 import * as faker from 'faker';
-
 import { ValidationPipe } from '@nestjs/common';
+
 import { AppModule } from '../../src/app.module';
 import { getTestAccessToken } from '../utils/get-token';
 import { resetDatabase } from '../utils/reset-database';

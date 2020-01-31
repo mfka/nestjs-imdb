@@ -1,5 +1,6 @@
 import { BaseEntity, Column, Entity, PrimaryGeneratedColumn, ManyToOne } from 'typeorm';
 import { ApiProperty } from '@nestjs/swagger';
+
 import { Movie } from '../movies/movie.entity';
 
 export const TABLE_NAME = 'actors';
@@ -27,7 +28,7 @@ export class Actor extends BaseEntity {
   public imdbUrl: string;
 
   @ManyToOne(
-    type => Movie,
+    () => Movie,
     movie => movie.actors,
   )
   public movie: Movie;

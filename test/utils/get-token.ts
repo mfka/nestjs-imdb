@@ -1,12 +1,13 @@
 import * as request from 'supertest';
-
 import { INestApplication } from '@nestjs/common';
 import * as argon2 from 'argon2';
+
 import { User } from '../../src/users/user.entity';
 
 const createUser = async (email: string, password: string): Promise<User> => {
   const encoded = await argon2.hash(password);
   const user = User.create({ email, password: encoded });
+
   return user.save();
 };
 
